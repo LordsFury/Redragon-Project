@@ -1,0 +1,91 @@
+USE Redragon;
+
+
+CREATE TABLE Product_Catalogue(Product_ID int PRIMARY KEY, Product_Name varchar(255) NOT NULL, Product_Category varchar(255) NOT NULL, Price DECIMAL NOT NULL, Quantity int NOT NULL, Discount_Percent int NOT NULL);
+
+CREATE TABLE NewsLetter_OptIn(EmailAddress varchar(255) PRIMARY KEY);
+
+CREATE TABLE Orders(Order_ID int PRIMARY KEY, Total_Price DECIMAL NOT NULL, Contact varchar(255) NOT NULL, Region varchar(255) NOT NULL, First_Name varchar(255) NOT NULL,
+Last_Name varchar(255) NOT NULL, Company varchar(255), Address varchar(255) NOT NULL, City varchar(255) NOT NULL, Province varchar(255) NOT NULL,
+Phone_Number varchar(15) NOT NULL, Shipping DECIMAL NOT NULL, Billing varchar(1) NOT NULL, Status varchar(255) NOT NULL);
+
+CREATE TABLE Order_Items(Order_ID int, Product_ID int, Quantity int,
+CONSTRAINT PK_Order_Items PRIMARY KEY(Order_ID, Product_ID), FOREIGN KEY(Order_ID) REFERENCES Orders(Order_ID) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY(Product_ID) REFERENCES Product_Catalogue(Product_ID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE AltBilling(Order_ID int PRIMARY KEY, Region varchar(255), First_Name varchar(255), Last_Name varchar(255), Company varchar(255),Address varchar(255),
+City varchar(255), Province varchar(255), Phone_Number varchar(15), FOREIGN KEY(Order_ID) REFERENCES Orders(Order_ID) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+INSERT INTO Product_Catalogue VALUES
+(1,'Redragon M711 COBRA Gaming Mouse with 16.8 Million RGB, 10,000 DPI Adjustable, 7 Programmable Buttons (Black)','MOUSE',4767,100,0),
+(2,'Redragon M607 GRIFFIN RGB Black 7200 DPI Gaming Mouse','MOUSE',4179,100,0),
+(3,'Redragon M601 CENTROPHORUS RGB Gaming Mouse, 6 Programmable Buttons','MOUSE',3802,100,0),
+(4,'Redragon M690 MIRAGE 4800 DPI, 8 Buttons Wireless Gaming Mouse','MOUSE',4626,100,0),
+(5,'Redragon M602-1 NEMEANLION 2 RGB 7200DPI, 7 Programmable Buttons Gaming Mouse','MOUSE',4075,100,1),
+(6,'Redragon M721-PRO LONEWOLF 2 RGB Wired Gaming mouse','MOUSE',4998,100,0),
+(7,'Redragon M808W STORM LUNAR Lightweight RGB Gaming Mouse with 12400 DPI, 7 Programmable Buttons (White)','MOUSE',6128,100,0),
+(8,'Redragon M710 Memeanlion Chroma RGB Gaming Mouse','MOUSE',4320,100,0),
+(9,'Redragon M988 RGB STORM ELITE Gaming Mouse 32000 DPI 7 Programmable Buttons (Black)','MOUSE',7150,100,2),
+(10,'Redragon M686 VAMPIRE ELITE Wireless Gaming Mouse','MOUSE',10005,100,0),
+(11,'Redragon M719 INVADER Gaming Mouse with Fire Button, 7 Programmable Buttons, RGB Backlit, 10,000 DPI','MOUSE',4039,100,0),
+(12,'Redragon M711 COBRA RGB Gaming Mouse (White)','MOUSE',5701,100,0),
+(13,'Redragon M703 GERBERUS, 7200DPI, 6 Programmable Wired Gaming Mouse','MOUSE',3012,100,0),
+(14,'Redragon M907 INSPIRIT 14400 DPI Gaming Mouse','MOUSE',4790,100,0),
+(15,'Redragon M988 STORM ELITE RGB Gaming Mouse (White)','MOUSE',7862,100,0),
+(16,'Redragon M910 RANGER CHROMA Gaming Mouse with 16.8 Million RGB Backlit, 9 Programmable Buttons, Up to 12400 DPI User Adjustable','MOUSE',5767,100,0),
+(17,'Redragon H120 ARES Wired Gaming Headset','HEADSET',2994,100,0),
+(18,'Redragon H320 LAMIA 2 RGB 7.1 Gaming Headset with Noise-Cancellation (Black)','HEADSET',8493,100,0),
+(19,'Redragon H350 PANDORA 2 RGB USB Gaming Headset (Black)','HEADSET',8297,100,0),
+(20,'Redragon H510W ZEUS 2 Wired Gaming Headset - 7.1 Surround Sound (White)','HEADSET',12458,100,0),
+(21,'Redragon H520 ICON Wired Gaming Headset - 7.1 Surround Sound','HEADSET',14902,100,0),
+(22,'Redragon H320W LAMIA 2 RGB 7.1 Gamign Headset with Noise-Cancellation (White)','HEADSET',8682,100,0),
+(23,'Redragon H350W PANDORA 2 RGB USB Gaming Headset (White)','HEADSET',8750,100,0),
+(24,'Redragon H301 SIREN 2 USB Gaming Headset','HEADSET',8500,100,0),
+(25,'Redragon H818 PELOPS Wireless Gaming Headset - 7.1 Surround Sound','HEADSET',13014,100,0),
+(26,'Redragon H848 Bluetooth Wireless Gaming Headphone','HEADSET',18856,100,0),
+(27,'REDRAGON H386 DIOMEDES Gaming Headset','HEADSET',9157,100,0),
+(28,'Redragon H848 Bluetooth Wireless Gaming Headphone (Blue)','HEADSET',19888,100,0),
+(29,'Redragon H380 Chiron RGB Gaming Headset - Black','HEADSET',10069,100,0),
+(30,'Redragon K530 RGB Draconic Wireless Mechanical Gaming Keyboard with Tactile Brown Switches (Black)','KEYBOARD',13800,100,0),
+(31,'Redragon K530 RGB Draconic Wireless Mechanical Gaming Keyboard with Tactile Brown Switches (White)','KEYBOARD',14430,100,0),
+(32,'Redragon K630 Dragonborn RGB Mechanical Gaming Keyboard (White)','KEYBOARD',9175,100,15),
+(33,'Redragon K552 RGB-1 KUMARA Full Anti Ghosting Mechanical Gaming Keyboard, 87 Keys','KEYBOARD',9932,100,0),
+(34,'Redragon K512 SHIVA RGB Backlit Membrane Gaming Keyboard','KEYBOARD',8365,100,0),
+(35,'Redragon K582 SURARA RGB LED Backlit Mechanical Gaming Keyboard','KEYBOARD',11316,100,0),
+(36,'Redragon K556 DEVARAJAS RGB Mechanical Gaming Keyboard with Brown Switches','KEYBOARD',14976,100,0),
+(37,'Redragon K568 DARK AVENGER RGB Backlit Mechanical Gaming Keyboard, 87 Keys','KEYBOARD',8756,100,0),
+(38,'Redragon K585 DITI One-Handed RGB Mechanical Wired Gaming Keyboard with Blue Switches','KEYBOARD',7405,100,0),
+(39,'Redragon K552 KUMARA RGB Mechanical Gaming Keyboard (White)','KEYBOARD',10358,100,0),
+(40,'Redragon K580 VATA RGB Backlit Mechanical Gaming Keyboard','KEYBOARD',14566,100,0),
+(41,'Redragon K589 SHRAPNEL RGB Backlit Mechanical Gaming Keyboard 104 Keys Anti-ghosting Red Switches','KEYBOARD',11695,100,0),
+(42,'Redragon K621 HORUS TKL RGB Wireless Mechanical Gaming Keyboard','KEYBOARD',16839,100,0),
+(43,'Redragon K596 VISHNU RGB Wireless Mechanical Gaming Keyboard, 87 Keys TKL','KEYBOARD',17194,100,0),
+(44,'Redragon K616 FIZZ PRO RGB Mechanical Gaming Keyboard (Black)','KEYBOARD',11707,100,0),
+(45,'Redragon K557 KALA RGB Backlit Waterproof Mechanical Gaming Keyboard','KEYBOARD',11957,100,0),
+(46,'Redragon P016 PISCES Gaming Mouse pad','MOUSE PAD',1095,100,0),
+(47,'Redragon P001 ARCHELON Gaming Mouse Pad','MOUSE PAD',1448,100,0),
+(48,'Redragon P012 CAPRICORN Mouse Pad with Stitched Edges','MOUSE PAD',1564,100,0),
+(49,'Redragon P018 TAURUS Gaming Mouse Pad Large Extended','MOUSE PAD',2566,100,0),
+(50,'Redragon P006A KUNLUN Gaming Mouse Pad Large Sized','MOUSE PAD',3513,100,0),
+(51,'Redragon P003 SUZAKU Huge Gaming Mouse Pad Mat','MOUSE PAD',2353,100,0),
+(52,'Redragon P029 FLICK S PC Mousepad','MOUSE PAD',1381,100,0),
+(53,'Redragon P026 PLUTO RGB','MOUSE PAD',4033,100,0),
+(54,'Redragon P037 METEOR Wristpad (Large)','MOUSE PAD',2866,100,0),
+(55,'Redragon P036 METEOR Wrist Rest Pad (Medium)','MOUSE PAD',2328,100,0),
+(56,'Redragon P040 Flick 3XL Mouse Mat (1219 x 610 mm)','MOUSE PAD',6037,100,0),
+(57,'REDRAGON HA300 SCEPTER RGB PRO GAMING HEADSET STAND','MOUSE PAD',5163,100,0),
+(58,'Redragon S101-BA-2 Wired Gaming Keyboard, Mouse, Headset, Mousepad Combo Set (4 in 1)','COMBO',12160,100,0),
+(59,'Redragon K585-BA RGB One-Handed Gaming Keyboard & M721-Pro RGB Gaming Mouse Combo Set (2 in 1)','COMBO',8701,100,0),
+(60,'Redragon K552 RGB Keyboard & M607 Mouse Combo Set (2 in 1)','COMBO',13216,100,0),
+(61,'Redragon K552-BA-2 Keyboard, M601 Mouse, P001 XL Mousepad Combo Set (3 in 1)','COMBO',13216,100,0),
+(62,'Redragon S129W Keyboard Mouse and Headsets Combo Set (3-in-1, White)','COMBO',20200,100,0),
+(63,'REDRAGON HA300 SCEPTER RGB PRO GAMING HEADSET STAND','HEADSET STAND',5163,100,0);
+
+SELECT * FROM Product_Catalogue;
+
+CREATE TABLE admin(id int PRIMARY KEY,username VARCHAR(255),_password varchar(255));
+insert into admin(id,username,_password) values(1,'Fahad','fahad123');
+insert into admin(id,username,_password) values(2,'Sameen','sameen123');
+insert into admin(id,username,_password) values(3,'Quratulain','quratulain123');
+insert into admin(id,username,_password) values(4,'Abdullah','abdullah123');
+select * from admin;
